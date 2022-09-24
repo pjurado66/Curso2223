@@ -5,21 +5,16 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.google.android.material.snackbar.Snackbar
+import com.pjurado.curso2223.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val user = findViewById<EditText>(R.id.email)
-        val pass = findViewById<EditText>(R.id.password)
-        val button = findViewById<Button>(R.id.button)
-
-        supportActionBar?.title = "Hola a todos"
-
-        button.setOnClickListener {
-            val msg = "Se ha loggeado el usuario ${user.text} con la contraseña ${pass.text}"
+        binding.button.setOnClickListener {
+            val msg = "Se ha loggeado el usuario ${binding.email.text} con la contraseña ${binding.password.text}"
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
         }
 
