@@ -8,45 +8,30 @@
     android:padding="48dp"
     tools:context=".MainActivity">
 
-    <com.google.android.material.textfield.TextInputLayout
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:id="@+id/email"
         android:hint="@string/usuario"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        android:theme="@style/Theme.Curso2223.Linear"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        style="@style/LocalEditTextStyle"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:id="@+id/email"/>
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/password"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        android:inputType="textPassword"
+        android:id="@+id/password"
+        android:hint="@string/password"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:id="@+id/password"/>
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/login" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/textView"
+    <Button
+        android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        style="@style/CustomTextViewStyle"/>
+        android:text="@string/login" />
+
 
 
 </LinearLayout>

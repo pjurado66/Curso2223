@@ -16,8 +16,6 @@ class MainActivity : AppCompatActivity() {
         val pass = findViewById<EditText>(R.id.password)
         val button = findViewById<Button>(R.id.button)
 
-        supportActionBar?.title = "Hola a todos"
-
         button.setOnClickListener {
             val msg = "Se ha loggeado el usuario ${user.text} con la contraseña ${pass.text}"
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
