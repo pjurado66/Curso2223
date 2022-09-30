@@ -1,5 +1,6 @@
 package com.pjurado.curso2223
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -13,7 +14,13 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater).apply {
             setContentView(root)
 
-            recycler.adapter = MoviesAdapter(movies)
+            recycler.adapter = MoviesAdapter(movies){ movie ->
+                val intent = Intent(this@MainActivity, DetailActivity::class.java)
+                intent.putExtra(DetailActivity.EXTRA_MOVIE, movie)
+                startActivity(intent)
+            }
+
+
         }
     }
 }
