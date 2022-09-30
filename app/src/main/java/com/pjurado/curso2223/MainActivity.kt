@@ -15,16 +15,11 @@ class MainActivity : AppCompatActivity() {
 
             recycler.adapter = MoviesAdapter(movies)
         }
-
-
-
     }
-
-
 }
 
 private val movies = (1..100).map {
     Movie(
         "Película $it",
-        "https://loremflickr.com/g/240/3200/paris/lock=$it")
+        "https://loremflickr.com/240/320/paris?lock=$it")
 }
