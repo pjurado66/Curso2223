@@ -12,19 +12,21 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
     companion object{
         const val EXTRA_MOVIE = "DetailActivity:Movie"
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentDetailBinding.bind(view)
 
-        //(requireActivity() as AppCompatActivity).supportActionBar?.title = movie.title
-/*
-        Glide.with(binding.imagen)
-            .load(movie.urlImagen)
-            .into(binding.imagen)
+        val movie = arguments?.getParcelable<Movie>(EXTRA_MOVIE)
 
- */
+        if (movie != null) {
+            (requireActivity() as AppCompatActivity).supportActionBar?.title = movie.title
+            Glide.with(binding.imagen)
+                .load(movie.urlImagen)
+                .into(binding.imagen)
+        }
     }
 
 }
