@@ -1,13 +1,13 @@
-package com.pjurado.curso2223
+package com.pjurado.curso2223.ui.detail
 
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
+import com.pjurado.curso2223.R
 import com.pjurado.curso2223.databinding.FragmentDetailBinding
-import java.lang.IllegalStateException
+import com.pjurado.curso2223.loadUrl
+import com.pjurado.curso2223.model.Movie
 
 class DetailFragment : Fragment(R.layout.fragment_detail) {
 

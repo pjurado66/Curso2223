@@ -1,14 +1,15 @@
-package com.pjurado.curso2223
+package com.pjurado.curso2223.ui.main
 
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import androidx.navigation.fragment.findNavController
+import com.pjurado.curso2223.R
 import com.pjurado.curso2223.databinding.FragmentMainBinding
+import com.pjurado.curso2223.model.Movie
+import com.pjurado.curso2223.ui.detail.DetailFragment
 
 class MainFragment : Fragment(R.layout.fragment_main) {
 

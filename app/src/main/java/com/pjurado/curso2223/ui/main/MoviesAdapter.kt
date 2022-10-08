@@ -1,12 +1,13 @@
-package com.pjurado.curso2223
+package com.pjurado.curso2223.ui.main
 
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.pjurado.curso2223.R
 import com.pjurado.curso2223.databinding.ViewMovieBinding
+import com.pjurado.curso2223.inflate
+import com.pjurado.curso2223.loadUrl
+import com.pjurado.curso2223.model.Movie
 
 class MoviesAdapter(val movies: List<Movie>, val listener: (Movie) -> Unit):
     RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
