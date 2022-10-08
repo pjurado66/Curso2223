@@ -9,9 +9,10 @@ import com.pjurado.curso2223.inflate
 import com.pjurado.curso2223.loadUrl
 import com.pjurado.curso2223.model.Movie
 
-class MoviesAdapter(val movies: List<Movie>, val listener: (Movie) -> Unit):
+class MoviesAdapter(val listener: (Movie) -> Unit):
     RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
+    var movies = emptyList<Movie>()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

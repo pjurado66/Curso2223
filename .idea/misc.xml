@@ -3,12 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/admin/AndroidStudioProjects/00_2122/Curso2223/app/src/main/res/layout/activity_detail.xml" value="0.22083333333333333" />
-        <entry key="..\:/Users/admin/AndroidStudioProjects/00_2122/Curso2223/app/src/main/res/layout/activity_host.xml" value="0.21666666666666667" />
-        <entry key="..\:/Users/admin/AndroidStudioProjects/00_2122/Curso2223/app/src/main/res/layout/activity_main.xml" value="0.4031141868512111" />
-        <entry key="..\:/Users/admin/AndroidStudioProjects/00_2122/Curso2223/app/src/main/res/layout/fragment_detail.xml" value="0.21666666666666667" />
-        <entry key="..\:/Users/admin/AndroidStudioProjects/00_2122/Curso2223/app/src/main/res/layout/fragment_main.xml" value="0.21666666666666667" />
-        <entry key="..\:/Users/admin/AndroidStudioProjects/00_2122/Curso2223/app/src/main/res/layout/view_movie.xml" value="0.11875" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/00_2122/Curso2223/app/src/main/res/layout/activity_main.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/00_2122/Curso2223/app/src/main/res/layout/fragment_detail.xml" value="0.1" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/00_2122/Curso2223/app/src/main/res/layout/fragment_main.xml" value="0.1" />
       </map>
     </option>
   </component>
