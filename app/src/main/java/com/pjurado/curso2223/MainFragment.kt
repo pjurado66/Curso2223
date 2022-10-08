@@ -3,6 +3,7 @@ package com.pjurado.curso2223
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.pjurado.curso2223.databinding.FragmentMainBinding
@@ -17,6 +18,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             }
         }
         (requireActivity() as AppCompatActivity).supportActionBar?.title = getString(R.string.app_name)
+
     }
 
     private fun navigateTo(movie: Movie) {

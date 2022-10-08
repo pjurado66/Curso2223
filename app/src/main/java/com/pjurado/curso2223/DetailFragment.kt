@@ -28,9 +28,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
         if (movie != null) {
             (requireActivity() as AppCompatActivity).supportActionBar?.title = movie.title
-            Glide.with(binding.imagen)
-                .load(movie.urlImagen)
-                .into(binding.imagen)
+            binding.imagen.loadUrl(movie.urlImagen)
         }
     }
 
