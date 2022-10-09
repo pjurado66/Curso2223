@@ -12,10 +12,7 @@ import com.pjurado.curso2223.databinding.FragmentMainBinding
 import com.pjurado.curso2223.model.Movie
 import com.pjurado.curso2223.model.MoviesProvider
 import com.pjurado.curso2223.ui.detail.DetailFragment
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class MainFragment : Fragment(R.layout.fragment_main) {
     private val adapter = MoviesAdapter(){ movie -> navigateTo(movie)}
@@ -37,8 +34,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private fun loadItems() {
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
             binding.progress.visibility =View.VISIBLE
-            val movies = withContext(Dispatchers.IO){ MoviesProvider.getMovies() }
-            adapter.movies = movies
+            val movies1 = async{ MoviesProvider.getMovies("dog") }
+            val movies2 = async{ MoviesProvider.getMovies("cat") }
+            adapter.movies = movies1.await() + movies2.await()
             adapter.notifyDataSetChanged()
             binding.progress.visibility = View.GONE
         }
