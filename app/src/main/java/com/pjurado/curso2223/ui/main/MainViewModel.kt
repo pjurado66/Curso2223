@@ -7,19 +7,29 @@ import com.pjurado.curso2223.model.MoviesProvider
 import kotlinx.coroutines.*
 
 class MainViewModel(): ViewModel() {
-    private val _progressVisible = MutableLiveData(false)
-    val progressVisible: LiveData<Boolean> get() = _progressVisible
-
-    private val _movies = MutableLiveData<List<Movie>>(emptyList())
-    val movies: LiveData<List<Movie>> get() = _movies
+    private val _state = MutableLiveData(UiState())
+    val state: LiveData<UiState> get() = _state
 
     init {
         viewModelScope.launch(Dispatchers.Main) {
-            _progressVisible.value = true
-            _movies.value =  withContext(Dispatchers.IO){MoviesProvider.getMovies()}
-            _progressVisible.value = false
+            _state.value = _state.value?.copy(loading = true)
+            val movies =  withContext(Dispatchers.IO){MoviesProvider.getMovies()}
+            _state.value = _state.value?.copy(loading = false, movies = movies)
         }
     }
 
+    fun navigateTo(movie: Movie) {
+        _state.value = _state.value?.copy(navigateTo = movie)
+    }
+
+    fun onNavigateDone(){
+        _state.value = _state.value?.copy(navigateTo = null)
+    }
+
+    data class UiState(
+        val loading: Boolean = false,
+        val movies: List<Movie>? = null,
+        val navigateTo: Movie? = null
+    )
 
 }

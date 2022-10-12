@@ -19,9 +19,9 @@ import com.pjurado.curso2223.ui.detail.DetailFragment
 import kotlinx.coroutines.*
 
 class MainFragment : Fragment(R.layout.fragment_main) {
-    private val adapter = MoviesAdapter(){ movie -> navigateTo(movie)}
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: FragmentMainBinding
+    private val adapter = MoviesAdapter(){ movie -> viewModel.navigateTo(movie)}
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,22 +30,26 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }
         (requireActivity() as AppCompatActivity).supportActionBar?.title = getString(R.string.app_name)
 
-        viewModel.progressVisible.observe(viewLifecycleOwner) { visible ->
-            binding.progress.visibility = if (visible) VISIBLE else GONE
-        }
+        viewModel.state.observe(viewLifecycleOwner){state ->
+            binding.progress.visibility =  if (state.loading) VISIBLE else GONE
+            state.movies?.let {
+                adapter.movies = state.movies
+                adapter.notifyDataSetChanged()
+            }
 
-        viewModel.movies.observe(viewLifecycleOwner){
-            adapter.movies = it
-            adapter.notifyDataSetChanged()
+            state.navigateTo?.let {
+                findNavController().navigate(
+                    R.id.action_mainFragment_to_detailFragment,
+                    bundleOf(DetailFragment.EXTRA_MOVIE to it)
+                )
+                viewModel.onNavigateDone()
+            }
+
+
+
+
         }
 
     }
 
-    private fun navigateTo(movie: Movie) {
-        findNavController().navigate(
-            R.id.action_mainFragment_to_detailFragment,
-            bundleOf(DetailFragment.EXTRA_MOVIE to movie)
-        )
-
-    }
 }
