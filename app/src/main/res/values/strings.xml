@@ -3,4 +3,5 @@
     <string name="usuario">User</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="api_key" translatable="false">90ed410279841454998676e620cc1cbb</string>
 </resources>

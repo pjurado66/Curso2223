@@ -1,20 +1,24 @@
 package com.pjurado.curso2223.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.pjurado.curso2223.R
 import com.pjurado.curso2223.databinding.FragmentMainBinding
 import com.pjurado.curso2223.model.Movie
 import com.pjurado.curso2223.model.MoviesProvider
+import com.pjurado.curso2223.model.server.RemoteConnection
 import com.pjurado.curso2223.ui.detail.DetailFragment
 import kotlinx.coroutines.*
 
@@ -45,8 +49,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 viewModel.onNavigateDone()
             }
 
+        }
 
-
+        viewLifecycleOwner.lifecycleScope.launch{
+            val movies = RemoteConnection.service.popularMovies(getString(R.string.api_key))
+            Snackbar.make(binding.root, "Movies: ${movies.results.size}", Snackbar.LENGTH_SHORT).show()
 
         }
 
