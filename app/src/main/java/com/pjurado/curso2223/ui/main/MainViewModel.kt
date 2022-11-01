@@ -4,16 +4,24 @@ import android.view.View
 import androidx.lifecycle.*
 import com.pjurado.curso2223.model.Movie
 import com.pjurado.curso2223.model.MoviesProvider
+import com.pjurado.curso2223.model.server.RemoteConnection
+import com.pjurado.curso2223.ui.detail.DetailViewModel
 import kotlinx.coroutines.*
 
-class MainViewModel(): ViewModel() {
+class MainViewModel(apiKey: String): ViewModel() {
     private val _state = MutableLiveData(UiState())
     val state: LiveData<UiState> get() = _state
 
     init {
         viewModelScope.launch(Dispatchers.Main) {
             _state.value = _state.value?.copy(loading = true)
-            val movies =  withContext(Dispatchers.IO){MoviesProvider.getMovies()}
+            val result = RemoteConnection.service.popularMovies(apiKey)
+            val movies = result.results.map {
+                Movie(
+                    it.title,
+                    "https://image.tmdb.org/t/p/w185/" + it.posterPath
+                )
+            }
             _state.value = _state.value?.copy(loading = false, movies = movies)
         }
     }
@@ -32,4 +40,10 @@ class MainViewModel(): ViewModel() {
         val navigateTo: Movie? = null
     )
 
+}
+
+class MainViewModelFactory(private val apiKey: String): ViewModelProvider.Factory{
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        return MainViewModel(apiKey) as T
+    }
 }

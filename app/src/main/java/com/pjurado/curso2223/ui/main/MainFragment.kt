@@ -23,7 +23,7 @@ import com.pjurado.curso2223.ui.detail.DetailFragment
 import kotlinx.coroutines.*
 
 class MainFragment : Fragment(R.layout.fragment_main) {
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: MainViewModel by viewModels{ MainViewModelFactory(getString(R.string.api_key))}
     private lateinit var binding: FragmentMainBinding
     private val adapter = MoviesAdapter(){ movie -> viewModel.navigateTo(movie)}
 
@@ -48,12 +48,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 )
                 viewModel.onNavigateDone()
             }
-
-        }
-
-        viewLifecycleOwner.lifecycleScope.launch{
-            val movies = RemoteConnection.service.popularMovies(getString(R.string.api_key))
-            Snackbar.make(binding.root, "Movies: ${movies.results.size}", Snackbar.LENGTH_SHORT).show()
 
         }
 

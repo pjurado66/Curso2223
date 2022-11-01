@@ -21,5 +21,8 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:background="?attr/colorSecondary"
         android:textColor="?attr/colorOnSecondary"
+        android:lines="2"
+        android:gravity="center"
+        android:ellipsize="end"
         tools:text="Title 1"/>
 </LinearLayout>
