@@ -17,7 +17,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.pjurado.curso2223.R
 import com.pjurado.curso2223.databinding.FragmentMainBinding
 import com.pjurado.curso2223.model.Movie
-import com.pjurado.curso2223.model.MoviesProvider
 import com.pjurado.curso2223.model.server.RemoteConnection
 import com.pjurado.curso2223.ui.detail.DetailFragment
 import kotlinx.coroutines.*
@@ -52,5 +51,4 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }
 
     }
-
 }

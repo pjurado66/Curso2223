@@ -3,7 +3,6 @@ package com.pjurado.curso2223.ui.main
 import android.view.View
 import androidx.lifecycle.*
 import com.pjurado.curso2223.model.Movie
-import com.pjurado.curso2223.model.MoviesProvider
 import com.pjurado.curso2223.model.server.RemoteConnection
 import com.pjurado.curso2223.ui.detail.DetailViewModel
 import kotlinx.coroutines.*
@@ -19,7 +18,11 @@ class MainViewModel(apiKey: String): ViewModel() {
             val movies = result.results.map {
                 Movie(
                     it.title,
-                    "https://image.tmdb.org/t/p/w185/" + it.posterPath
+                    "https://image.tmdb.org/t/p/w185/" + it.posterPath,
+                    it.overview,
+                    it.originalLanguage,
+                    it.originalTitle,
+                    it.voteAverage
                 )
             }
             _state.value = _state.value?.copy(loading = false, movies = movies)
