@@ -11,6 +11,5 @@ class Movie(
     val original_languague: String,
     val title_original: String,
     val valoracion: Double
-
 ): Parcelable {
 }

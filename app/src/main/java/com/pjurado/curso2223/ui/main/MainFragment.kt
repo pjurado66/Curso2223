@@ -49,6 +49,5 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             }
 
         }
-
     }
 }
