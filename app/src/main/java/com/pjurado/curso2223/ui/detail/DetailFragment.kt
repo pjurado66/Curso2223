@@ -18,6 +18,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pjurado.curso2223.R
 import com.pjurado.curso2223.databinding.FragmentDetailBinding
 import com.pjurado.curso2223.loadUrl
@@ -57,6 +59,8 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             }
         }
         //(requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
+
+
 
         viewModel.movie.observe(viewLifecycleOwner){ movie ->
             binding.toolbar.title = movie.title
