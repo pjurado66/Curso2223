@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import com.pjurado.curso2223.App
 import com.pjurado.curso2223.R
 import com.pjurado.curso2223.databinding.FragmentMainBinding
 import com.pjurado.curso2223.model.Movie
@@ -22,7 +23,13 @@ import com.pjurado.curso2223.ui.detail.DetailFragment
 import kotlinx.coroutines.*
 
 class MainFragment : Fragment(R.layout.fragment_main) {
-    private val viewModel: MainViewModel by viewModels{ MainViewModelFactory(getString(R.string.api_key))}
+    private val viewModel: MainViewModel by viewModels{
+        MainViewModelFactory(
+            getString(R.string.api_key),
+            (requireContext().applicationContext as App).db.movieDao()
+        )
+    }
+
     private lateinit var binding: FragmentMainBinding
     private val adapter = MoviesAdapter(){ movie -> viewModel.navigateTo(movie)}
 

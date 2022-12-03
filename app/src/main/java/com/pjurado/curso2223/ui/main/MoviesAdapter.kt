@@ -37,7 +37,7 @@ class MoviesAdapter(val listener: (Movie) -> Unit):
          fun bind(movie: Movie){
              binding.title.text = movie.title
 
-             binding.imagen.loadUrl(movie.urlImagen)
+             movie.urlImagen?.let { binding.imagen.loadUrl(it) }
          }
     }
 }

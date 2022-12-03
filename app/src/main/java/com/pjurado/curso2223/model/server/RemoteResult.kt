@@ -2,6 +2,8 @@ package com.pjurado.curso2223.model.server
 
 
 import com.google.gson.annotations.SerializedName
+import com.pjurado.curso2223.model.Movie as DomainMovie
+import com.pjurado.curso2223.model.bd.Movie as DbMovie
 
 data class RemoteResult(
     val page: Int,
@@ -25,4 +27,19 @@ data class Movie(
     val video: Boolean,
     @SerializedName("vote_average") val voteAverage: Double,
     @SerializedName("vote_count") val voteCount: Int
+)
+
+fun Movie.toDbMovie(): DbMovie = DbMovie(
+    id,
+    adult,
+    overview,
+    releaseDate,
+    "https://image.tmdb.org/t/p/w185/$posterPath",
+    originalLanguage,
+    originalTitle,
+    popularity,
+    title,
+    video,
+    voteAverage,
+    voteCount
 )
