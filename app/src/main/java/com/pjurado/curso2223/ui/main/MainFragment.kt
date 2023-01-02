@@ -17,18 +17,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.pjurado.curso2223.App
 import com.pjurado.curso2223.R
 import com.pjurado.curso2223.databinding.FragmentMainBinding
-import com.pjurado.curso2223.model.Movie
-import com.pjurado.curso2223.model.server.RemoteConnection
 import com.pjurado.curso2223.ui.detail.DetailFragment
 import kotlinx.coroutines.*
 
 class MainFragment : Fragment(R.layout.fragment_main) {
-    private val viewModel: MainViewModel by viewModels{
-        MainViewModelFactory(
-            getString(R.string.api_key),
-            (requireContext().applicationContext as App).db.movieDao()
-        )
-    }
+    private val viewModel: MainViewModel by viewModels()
 
     private lateinit var binding: FragmentMainBinding
     private val adapter = MoviesAdapter(){ movie -> viewModel.navigateTo(movie)}
@@ -55,6 +48,19 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 viewModel.onNavigateDone()
             }
 
+            state.navigateToCreate?.let{
+                if (it) {
+                    findNavController().navigate(
+                        R.id.action_mainFragment_to_createMovieFragment,
+                    )
+                    viewModel.navigateToCreateDone()
+                }
+            }
+
+        }
+
+        binding.fab.setOnClickListener {
+            viewModel.navigateToCreate()
         }
     }
 }

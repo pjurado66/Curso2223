@@ -13,6 +13,7 @@ import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.pjurado.curso2223.R
 import com.pjurado.curso2223.databinding.FragmentDetailBinding
 import com.pjurado.curso2223.loadUrl
@@ -40,6 +41,20 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             binding.imagen.loadUrl(movie.urlImagen)
             binding.descripcion.text = movie.description
             bindingDetail(binding.detalles, movie)
+        }
+
+        binding.btnBorrar.setOnClickListener {
+            viewModel.borraMovie()
+            findNavController().navigate(
+                R.id.action_detailFragment_to_mainFragment
+            )
+        }
+
+        binding.appbar.setOnClickListener{
+            viewModel.modificaTituloMovie()
+            findNavController().navigate(
+                R.id.action_detailFragment_to_mainFragment
+            )
         }
 
         binding.fab.setOnClickListener {
