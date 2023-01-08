@@ -7,9 +7,12 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.snapshots
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
@@ -100,6 +103,15 @@ object DbFirestore {
 
             return@withContext mutableData
         }
+    }
+
+    fun getFlow(): Flow<List<Movie>> {
+        return FirebaseFirestore.getInstance()
+            .collection(COLLECTION_MOVIES)
+            .orderBy("title", Query.Direction.DESCENDING)
+            .snapshots().map { snapshot ->
+                snapshot.toObjects(Movie::class.java)
+            }
     }
 
 }

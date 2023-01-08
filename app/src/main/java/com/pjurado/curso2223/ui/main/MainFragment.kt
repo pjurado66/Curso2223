@@ -11,7 +11,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.pjurado.curso2223.App
@@ -33,13 +35,22 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }
         (requireActivity() as AppCompatActivity).supportActionBar?.title = getString(R.string.app_name)
 
+
         viewModel.state.observe(viewLifecycleOwner){state ->
-            binding.progress.visibility =  if (state.loading) VISIBLE else GONE
-            state.movies?.let {
+           binding.progress.visibility =  if (state.loading) VISIBLE else GONE
+//LiveData y GET
+/*             state.movies?.let {
                 adapter.movies = state.movies
                 adapter.notifyDataSetChanged()
+            }*/
+            lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    state.movies?.collect() {
+                        adapter.movies = it
+                        adapter.notifyDataSetChanged()
+                    }
+                }
             }
-
             state.navigateTo?.let {
                 findNavController().navigate(
                     R.id.action_mainFragment_to_detailFragment,
