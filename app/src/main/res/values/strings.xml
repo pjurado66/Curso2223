@@ -4,4 +4,5 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="api_key" translatable="false">90ed410279841454998676e620cc1cbb</string>
+    <string name="title_activity_compose">ComposeActivity</string>
 </resources>

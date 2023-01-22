@@ -16,9 +16,20 @@
         android:theme="@style/Theme.Curso2223"
         tools:targetApi="31">
         <activity
+            android:name=".ui.ComposeActivity"
+            android:exported="true"
+            android:label="@string/title_activity_compose"
+            android:theme="@style/Theme.Curso2223" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".HostActivity"
-            android:theme="@style/Theme.Curso2223.NoActionBar"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Curso2223.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
